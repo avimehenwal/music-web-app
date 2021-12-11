@@ -3,10 +3,16 @@ import { createTheme } from '@mui/material/styles';
 export const theme = createTheme({
   palette: {
     primary: {
-      main: '#3700B3',
+      light: '#757ce8',
+      main: '#3f50b5',
+      dark: '#002884',
+      contrastText: '#fff',
     },
     secondary: {
-      main: '#03DAC6',
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
     },
     error: {
       main: '#ee4e65e6'
@@ -17,6 +23,10 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: 'Roboto',
+    fontSize: 15,
+    h2: {
+      fontSize: 30,
+    },
   },
   components: {
     MuiCssBaseline: {},

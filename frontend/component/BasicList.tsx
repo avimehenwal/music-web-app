@@ -18,22 +18,19 @@ interface BasicListProps {
 export const BasicList: React.FC<BasicListProps> = ({ items }) => {
   return (
     <Box>
-      <List>
+      <List sx={{ display: 'grid', gridTemplateColumns: "1fr 1fr" }}>
         {items?.map(item => (
           <ListItem key={item.id}>
-            <ListItemButton>
-              {/* <ListItemText primary={item.name} /> */}
-              <Image
-                src={item.cover_image_path}
-                alt={item.name}
-                width={700}
-                height={700}
-              />
-              <SongDetail data={item} />
-              <ListItemIcon>
-                <LibraryMusicOutlinedIcon color="primary" />
-              </ListItemIcon>
-            </ListItemButton>
+            {/* <ListItemButton> */}
+            {/* <ListItemText primary={item.name} /> */}
+            <Image
+              src={item.cover_image_path}
+              alt={item.name}
+              width={200}
+              height={200}
+            />
+            <SongDetail data={item} />
+            {/* </ListItemButton> */}
           </ListItem>
         ))}
 
