@@ -1,21 +1,13 @@
-import type { NextPage } from 'next'
+import * as React from "react";
+import type { NextPage } from 'next';
+import { PageLayout1 } from '../component/PageLayout1'
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
   return (
-    <>
-      <header>
-        <h1>Applicatiopn header</h1>
-      </header>
-
-      <main >
-        <h1>Main content</h1>
-      </main>
-
-      <footer>
-        some footer
-      </footer>
-    </>
+    <PageLayout1>
+      <h1>Some text goes in here</h1>
+    </PageLayout1>
   )
 }
 
-export default Home
+export default HomePage
