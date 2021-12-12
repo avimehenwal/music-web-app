@@ -48,7 +48,8 @@ type MusicCardProps = {
 
 export const MusicCard: React.FC<MusicCardProps> = ({ item }) => {
   const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
-  const [audio] = useState(new Audio(item.music_file_path));
+  // const [audio] = useState(new Audio(item.music_file_path));
+  const [audio] = useState(typeof Audio !== "undefined" && new Audio(item.music_file_path));
 
   const toggle = () => setIsPlaying(!isPlaying);
 
