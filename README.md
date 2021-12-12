@@ -4,7 +4,7 @@
 
 ## Demo
 
-![music app demo](docs/demo1.gif)
+![music app demo](docs/demo/demp.gif)
 
 ## Features
 
@@ -17,6 +17,8 @@ Built using **react** + **typescript** using **nextjs** on node **v16.2.0**
 ## How to run
 
 [check out this readme here](frontend/README.md)
+
+[More info here](docs/demo/design-decisions.md)
 
 #### :v: Get in touch with me
 
