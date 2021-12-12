@@ -12,7 +12,7 @@ console.log(`ENVIRONMENT = ${process.env.NODE_ENV}`)
 
 module.exports = withMDX({
   reactStrictMode: true,
-  basePath: `${(process.env.NODE_ENV === 'production') ? '/music-web-app' : ''}`,
+  // basePath: `${(process.env.NODE_ENV === 'production') ? '/music-web-app' : ''}`,
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx',],
   images: {
     domains: ['dz2l6nhikl0ua.cloudfront.net'],
