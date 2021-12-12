@@ -24,6 +24,24 @@ const DataStyle = styled('div')(({ theme }) => ({
 export const BasicList: React.FC<BasicListProps> = ({ items }) => {
   const theme = useTheme();
 
+  const postLike = (id) => {
+    const removeSpaces = id.replace(/\s+/g, '')
+    console.log(removeSpaces)
+
+    fetch('https://api-stg.jam-community.com/interact/like?apikey=___agAFTxkmMIWsmN9zOpM_6l2SkZPPy21LGRlxhYD8', {
+      method: 'POST',
+      body: JSON.stringify({ id: removeSpaces }),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    }).then((res) => res.json())
+      .then((result) => {
+        console.log(result)
+        alert(JSON.stringify(result, null, 2))
+      })
+      .catch((err) => console.log('error'))
+  }
+
   return (
     <Box>
       <List sx={{
@@ -36,7 +54,7 @@ export const BasicList: React.FC<BasicListProps> = ({ items }) => {
       }}>
         {items?.map(item => (
           <>
-            <Card sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
+            <Card sx={{ display: 'flex', justifyContent: 'space-evenly' }} key={item.id}>
               <Box sx={{ display: 'flex', flexDirection: 'column', margin: '2rem' }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography variant="h5">
@@ -59,8 +77,8 @@ export const BasicList: React.FC<BasicListProps> = ({ items }) => {
                   <Typography variant="body2" sx={{ marginLeft: "1em" }}><strong>{item.faves}</strong> Favourites</Typography>
                 </DataStyle>
 
-                <DataStyle>
-                  <ThumbUpOutlinedIcon color="warning" fontSize="small" />
+                <DataStyle onClick={() => postLike(item.id)}>
+                  <ThumbUpOutlinedIcon color="warning" fontSize="small" sx={{ cursor: 'pointer' }} />
                   <Typography variant="body2" sx={{ marginLeft: "1em" }}><strong>{item.likes}</strong> Likes</Typography>
                 </DataStyle>
 
