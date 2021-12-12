@@ -4,6 +4,8 @@
 
 ## Demo
 
+:cyclone: [Live Link](https://avimehenwal.github.io/music-web-app/)
+
 ![music app demo](assets/demo.gif)
 
 ## Features
@@ -13,6 +15,9 @@ Built using **react** + **typescript** using **nextjs** on node **v16.2.0**
 - [x] responsive design
 - [x] material design
 - [x] image overlay play/pause music controls
+- [x] Highly performance using pre-rendering on server
+
+![performance score](assets/lighthouse-score.png)
 
 ## How to run
 
@@ -26,7 +31,7 @@ yarn dev
 
 [check out this readme here](frontend/README.md)
 
-[More info here](docs/demo/design-decisions.md)
+[More info here](assets/issues.md)
 
 #### :v: Get in touch with me
 
