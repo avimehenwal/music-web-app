@@ -16,6 +16,14 @@ Built using **react** + **typescript** using **nextjs** on node **v16.2.0**
 
 ## How to run
 
+Please make sure you are on node **v16.2.0**
+
+```
+cd frontend
+yarn install
+yarn dev
+```
+
 [check out this readme here](frontend/README.md)
 
 [More info here](docs/demo/design-decisions.md)
