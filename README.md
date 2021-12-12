@@ -4,7 +4,7 @@
 
 ## Demo
 
-![music app demo](docs/demo/demp.gif)
+![music app demo](assets/demo.gif)
 
 ## Features
 
