@@ -5,8 +5,11 @@ import { BasicList } from '../component/BasicList';
 import { PageLayout1 } from '../component/PageLayout1';
 import { fetcher, trendingDataUrl } from '../ions/hooks';
 
+interface HomePageProps {
+  data: any[]
+}
 
-const HomePage: NextPage = ({ data }) => {
+const HomePage: NextPage<HomePageProps> = ({ data }) => {
 
   return (
     <PageLayout1>

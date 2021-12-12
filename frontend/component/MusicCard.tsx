@@ -9,7 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import * as React from "react";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image'
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 
@@ -48,8 +48,10 @@ type MusicCardProps = {
 
 export const MusicCard: React.FC<MusicCardProps> = ({ item }) => {
   const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
+  // NOTE: cannot run Audio web API @server
+  // const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   // const [audio] = useState(new Audio(item.music_file_path));
-  const [audio] = useState(typeof Audio !== "undefined" && new Audio(item.music_file_path));
 
   const toggle = () => setIsPlaying(!isPlaying);
 
@@ -72,18 +74,17 @@ export const MusicCard: React.FC<MusicCardProps> = ({ item }) => {
   }
 
   useEffect(() => {
-    isPlaying ? audio.play() : audio.pause();
-  },
-    [isPlaying]
-  );
-
-  useEffect(() => {
-    audio.addEventListener('ended', () => setIsPlaying(false));
+    (audioRef.current) && audioRef.current.addEventListener('ended', () => setIsPlaying(false));
     return () => {
-      audio.removeEventListener('ended', () => setIsPlaying(false));
+      (audioRef.current) && audioRef.current.removeEventListener('ended', () => setIsPlaying(false));
     };
   }, []);
 
+  useEffect(() => {
+    if (audioRef.current) {
+      isPlaying ? audioRef.current.play() : audioRef.current.pause();
+    }
+  }, [isPlaying]);
 
   return (
     <StyledCard sx={{ display: 'flex', justifyContent: 'space-evenly' }} key={item.id}>
@@ -98,7 +99,7 @@ export const MusicCard: React.FC<MusicCardProps> = ({ item }) => {
         </CardContent>
 
         <Box className='margin-bottom'>
-          <audio controls>
+          <audio controls ref={audioRef} >
             <source src={item.music_file_path} type={item.music_file_mimetype} />
             Your browser does not support the audio element.
           </audio>
