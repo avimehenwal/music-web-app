@@ -8,7 +8,7 @@ const withMDX = require('@next/mdx')({
   },
 })
 
-console.log(`ENVIRONMENT = ${process.env.NODE_ENV}`)
+console.log(`ENVIRONMENT = ${process.env.NODE_ENV} local-prod-url = http://localhost:3000/music-web-app/`)
 
 module.exports = withMDX({
   reactStrictMode: true,
