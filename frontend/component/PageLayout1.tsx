@@ -45,7 +45,7 @@ export const PageLayout1: React.FC = (props) => {
         </Toolbar>
       </AppBar>
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "3em" }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "3em", backgroundColor: 'lightgray' }}>
         {props.children}
       </Box>
     </Box>
