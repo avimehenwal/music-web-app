@@ -2,6 +2,7 @@
   "conventionalCommits.scopes": [
     "frontend",
     "nextjs",
-    "gh-pages"
+    "gh-pages",
+    "audio"
   ]
 }
