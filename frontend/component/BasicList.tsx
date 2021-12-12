@@ -8,16 +8,30 @@ import List from '@mui/material/List';
 import { styled, useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
+import PlayCircleOutlinedIcon from '@mui/icons-material/PlayCircleOutlined';
 
 interface BasicListProps {
   items: any[]
 }
 
-const DataStyle = styled('div')(({ theme }) => ({
+const DataStyle = styled('div')(() => ({
   display: 'inline-flex',
   padding: '0.1rem',
   marginLeft: '1rem',
   // fontSize: '6'
+}));
+
+const StyledCard = styled(Card)(({ theme }) => ({
+  transition: "transform 0.15s ease-in-out",
+  "&:hover": {
+    transform: "scale3d(1.05, 1.10, 1)",
+  },
+  '& .margin-bottom': {
+    marginBottom: '1em',
+  },
+  "& .on-hover:hover": {
+    color: theme.palette.primary.main,
+  },
 }));
 
 
@@ -54,18 +68,18 @@ export const BasicList: React.FC<BasicListProps> = ({ items }) => {
       }}>
         {items?.map(item => (
           <>
-            <Card sx={{ display: 'flex', justifyContent: 'space-evenly' }} key={item.id}>
+            <StyledCard sx={{ display: 'flex', justifyContent: 'space-evenly' }} key={item.id}>
               <Box sx={{ display: 'flex', flexDirection: 'column', margin: '2rem' }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
-                  <Typography variant="h5">
+                  <Typography variant="h5" className='on-hover'>
                     {item.name}
                   </Typography>
-                  <Typography variant="subtitle1" color="text.secondary">
+                  <Typography variant="subtitle1" color="text.secondary" className='on-hover'>
                     {item.artist_name}
                   </Typography>
                 </CardContent>
 
-                <Box sx={{ marginBottom: '1em' }}>
+                <Box className='margin-bottom'>
                   <audio controls>
                     <source src={item.music_file_path} type={item.music_file_mimetype} />
                     Your browser does not support the audio element.
@@ -90,7 +104,7 @@ export const BasicList: React.FC<BasicListProps> = ({ items }) => {
                 image={item.cover_image_path}
                 alt={item.name}
               />
-            </Card>
+            </StyledCard>
           </>
         ))}
       </List>
