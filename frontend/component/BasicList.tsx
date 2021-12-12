@@ -38,7 +38,14 @@ export const BasicList: React.FC<BasicListProps> = ({ items }) => {
 
   return (
     <Box>
-      <List sx={{ display: 'grid', gridTemplateColumns: "1fr 1fr", gridGap: '1em' }}>
+      <List sx={{
+        display: 'grid',
+        gridTemplateColumns: {
+          sm: "1fr",
+          md: "1fr 1fr",
+        },
+        gridGap: '1em'
+      }}>
         {items?.map(item => (
           <>
             {/* <ListItem key={item.id}>
