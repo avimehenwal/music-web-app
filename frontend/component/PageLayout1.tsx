@@ -27,27 +27,38 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
+const StyledApp = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  '& .pad-left': {
+    marginLeft: '1rem'
+  },
+  '& .main-grid': {
+    flexGrow: 1,
+    padding: theme.spacing(2),
+    marginTop: "4em",
+    backgroundColor: 'darkgray'
+  }
+}));
+
 export const PageLayout1: React.FC = (props) => {
   const theme = useTheme();
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <StyledApp>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton
-            color="inherit"
-          >
-            <LibraryMusicOutlinedIcon color="secondary" />
+          <IconButton>
+            <LibraryMusicOutlinedIcon color="secondary" fontSize="large" />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h4" noWrap color="white" className="pad-left">
             {config.title}
           </Typography>
         </Toolbar>
       </AppBar>
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: "3em", backgroundColor: 'lightgray' }}>
+      <Box component="main" className='main-grid'>
         {props.children}
       </Box>
-    </Box>
+    </StyledApp>
   );
 }

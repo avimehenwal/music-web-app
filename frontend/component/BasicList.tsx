@@ -1,5 +1,6 @@
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import { CardActions } from '@mui/material';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -8,8 +9,6 @@ import List from '@mui/material/List';
 import { styled, useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
-import PlayCircleOutlinedIcon from '@mui/icons-material/PlayCircleOutlined';
-
 interface BasicListProps {
   items: any[]
 }
@@ -17,12 +16,12 @@ interface BasicListProps {
 const DataStyle = styled('div')(() => ({
   display: 'inline-flex',
   padding: '0.1rem',
-  marginLeft: '1rem',
-  // fontSize: '6'
+  marginRight: '1em'
 }));
 
 const StyledCard = styled(Card)(({ theme }) => ({
   transition: "transform 0.15s ease-in-out",
+
   "&:hover": {
     transform: "scale3d(1.05, 1.10, 1)",
   },
@@ -32,6 +31,14 @@ const StyledCard = styled(Card)(({ theme }) => ({
   "& .on-hover:hover": {
     color: theme.palette.primary.main,
   },
+  "& .like-icon": {
+    cursor: 'pointer',
+    color: theme.palette.secondary.main
+  },
+  "& .like-icon:active": {
+    color: theme.palette.error.main,
+    transform: "scale(1.5)",
+  }
 }));
 
 
@@ -74,7 +81,7 @@ export const BasicList: React.FC<BasicListProps> = ({ items }) => {
                   <Typography variant="h5" className='on-hover'>
                     {item.name}
                   </Typography>
-                  <Typography variant="subtitle1" color="text.secondary" className='on-hover'>
+                  <Typography variant="subtitle1" color="primary.light" className='on-hover'>
                     {item.artist_name}
                   </Typography>
                 </CardContent>
@@ -86,15 +93,17 @@ export const BasicList: React.FC<BasicListProps> = ({ items }) => {
                   </audio>
                 </Box>
 
-                <DataStyle>
-                  <FavoriteBorderOutlinedIcon color="info" fontSize="small" />
-                  <Typography variant="body2" sx={{ marginLeft: "1em" }}><strong>{item.faves}</strong> Favourites</Typography>
-                </DataStyle>
+                <CardActions>
+                  <DataStyle onClick={() => postLike(item.id)}>
+                    <ThumbUpIcon fontSize="small" className='like-icon' />
+                    <Typography variant="body2" sx={{ marginLeft: "1em" }} color="primary.light"><strong>{item.likes}</strong> Likes</Typography>
+                  </DataStyle>
 
-                <DataStyle onClick={() => postLike(item.id)}>
-                  <ThumbUpOutlinedIcon color="warning" fontSize="small" sx={{ cursor: 'pointer' }} />
-                  <Typography variant="body2" sx={{ marginLeft: "1em" }}><strong>{item.likes}</strong> Likes</Typography>
-                </DataStyle>
+                  <DataStyle>
+                    <FavoriteBorderOutlinedIcon color="disabled" fontSize="small" />
+                    <Typography variant="body2" color="text.disabled" sx={{ marginLeft: "1em" }}><strong>{item.faves}</strong> Favourites</Typography>
+                  </DataStyle>
+                </CardActions>
 
               </Box>
 
@@ -104,6 +113,8 @@ export const BasicList: React.FC<BasicListProps> = ({ items }) => {
                 image={item.cover_image_path}
                 alt={item.name}
               />
+
+
             </StyledCard>
           </>
         ))}
