@@ -46,11 +46,13 @@ type MusicCardProps = {
   item: any
 }
 
+type genericType<T> = T | null;
+
 export const MusicCard: React.FC<MusicCardProps> = ({ item }) => {
   const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
   // NOTE: cannot run Audio web API @server
   // const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef = useRef<genericType<HTMLAudioElement>>(null);
   // const [audio] = useState(new Audio(item.music_file_path));
 
   const toggle = () => setIsPlaying(!isPlaying);

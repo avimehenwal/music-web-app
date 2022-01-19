@@ -6,7 +6,7 @@ import { PageLayout1 } from '../component/PageLayout1';
 import { fetcher, trendingDataUrl } from '../ions/hooks';
 
 interface HomePageProps {
-  data: any[]
+  data: any[] // bad practise
 }
 
 const HomePage: NextPage<HomePageProps> = ({ data }) => {
